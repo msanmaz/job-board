@@ -1,8 +1,10 @@
 import Head from 'next/head'
-import Image from 'next/image'
+import prisma from './../lib/prisma'
+import { getJobs } from './../lib/jobs'
 
 
-export default function Home() {
+export default function Home({jobs}) {
+  console.log(jobs)
   return (
     <>
       <Head>
@@ -11,10 +13,28 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className='flex justify-center items-center w-full h-[100vh] text-black'>
-    Job-Board
+    <div className='mt-10'>
+      <div className='text-center p-4 m-4'>
+        <h2 className='mb-10 text-4xl font-bold'>Find a job!</h2>
+      </div>
+      {jobs.map((job, index) => (
+        <p id={index}>{job.title}</p>
+      ))}
+    </div>
 
-   </div>
     </>
   )
+}
+
+
+
+export async function getServerSideProps(context) {
+  let jobs = await getJobs(prisma)
+	jobs = JSON.parse(JSON.stringify(jobs))
+
+  return {
+    props: {
+      jobs,
+    },
+  }
 }

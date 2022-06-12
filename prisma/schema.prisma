@@ -20,7 +20,8 @@ model User {
   updatedAt     DateTime  @updatedAt
   accounts      Account[]
   sessions      Session[]
-    Job         Job[]
+  Job           Job[]
+  company       Boolean @default(false)
 }
 
 model VerificationToken {
