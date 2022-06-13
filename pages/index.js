@@ -1,10 +1,10 @@
 import Head from 'next/head'
 import prisma from './../lib/prisma'
 import { getJobs } from './../lib/jobs'
-
+import Jobs from '/components/jobs'
 
 export default function Home({jobs}) {
-  console.log(jobs)
+
   return (
     <>
       <Head>
@@ -17,9 +17,7 @@ export default function Home({jobs}) {
       <div className='text-center p-4 m-4'>
         <h2 className='mb-10 text-4xl font-bold'>Find a job!</h2>
       </div>
-      {jobs.map((job, index) => (
-        <p id={index}>{job.title}</p>
-      ))}
+      <Jobs jobs={jobs} />
     </div>
 
     </>
