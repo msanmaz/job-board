@@ -2,6 +2,7 @@ import Head from 'next/head'
 import prisma from './../lib/prisma'
 import { getJobs } from './../lib/jobs'
 import Jobs from '/components/jobs'
+import Link from 'next/link'
 
 export default function Home({jobs}) {
 
@@ -13,6 +14,24 @@ export default function Home({jobs}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+
+    <div className='flex w-full h-[3rem] bg-gray-200'>
+
+
+      <Link href='/api/auth/signin'>   
+       <div className='flex justify-end py-2'>
+      <div className='w-[70px] h-[2rem] flex'>
+      <button className='rounded-full bg-gray-400 hover:bg-gray-600 text-white font-bold w-full'>
+      Login
+      </button>
+
+      </div>
+ 
+      </div>
+      
+      </Link>
+
+    </div>
     <div className='mt-10'>
       <div className='text-center p-4 m-4'>
         <h2 className='mb-10 text-4xl font-bold'>Find a job!</h2>
