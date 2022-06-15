@@ -16,11 +16,11 @@ export default NextAuth({
           password: { label: "Password", type: "password" },
         },
         async authorize(credentials) {
-  
+          console.log(credentials)
           //Find user with the email  
-          const result = await prisma.User.findUnique({
+          const result = await prisma.user.findUnique({
             where: {
-              email: credentials.email,
+              email: credentials.username,
             }
   
           });
