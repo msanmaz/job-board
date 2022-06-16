@@ -44,19 +44,39 @@ export default NextAuth({
   ],
 
   database: process.env.DATABASE_URL,
-  secret: process.env.SECRET,
+
 
   session: {
-    jwt: true,
-    maxAge: 30 * 24 * 60 * 60 // 30 days
+    strategy:'jwt'
+  },
+  jwt: {
+    secret: process.env.SECRET,
+    encryption:true,
   },
 
   debug: true,
   adapter: PrismaAdapter(prisma),
 	
 	callbacks: {
-    session: async ({ session, user }) => {
-      session.user.id = user.id
+    jwt:async ({token,user}) => {
+      console.log('token in jwt',token)
+      console.log('user in jwt',user)
+
+      if (user) {
+        token.sub = user.id
+        token.name = user.name
+        token.email = user.email
+        token.picture = user.image
+        
+      }
+      return Promise.resolve(token);
+    },
+    session: async ({ session,token, user }) => {
+      if (!session) return null
+      session.email = token.email
+      session.name = token.name
+      session.jti = token.jti
+      session.user.id = token.sub
       return Promise.resolve(session)
     },
   },
