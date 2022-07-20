@@ -20,7 +20,7 @@ export default function Home({ jobs }) {
 
 
 
-          <Link href='/api/auth/signin'>
+          <a href='/api/auth/signin'>
             <div className='flex justify-end py-2'>
               <div className='w-[70px] h-[2rem] flex'>
                 <button className='rounded-full bg-gray-400 hover:bg-gray-600 text-white font-bold w-full'>
@@ -31,7 +31,7 @@ export default function Home({ jobs }) {
 
             </div>
 
-          </Link>
+          </a>
 
 
 
