@@ -4,7 +4,8 @@ import Link from 'next/link'
 import Job from '../../components/Job'
 
 export default function Company({ jobs, company }) {
-
+  console.log(company)
+  console.log(jobs)
     return (
         <div className='mt-10'>
         <div className='text-center p-4 m-4'>
@@ -15,7 +16,7 @@ export default function Company({ jobs, company }) {
           </Link>
         </div>
         <div className='text-center p-4 m-4'>
-          <h2 className='mb-10 text-4xl font-bold'>Profile of {company.name}</h2>
+          <h2 className='mb-10 text-4xl font-bold'>Profile of</h2>
         </div>
   
         <div className='mb-4 mt-20'>
